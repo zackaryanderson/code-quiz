@@ -10,15 +10,19 @@
 
 <body>
     <!-- add a high score list link in top left-->
-    <a href="highscores.html"></a>
     <main id="wrapper">
-        <h5 id="timer"></h5>
+        <div class="top">
+            <h5 id="timer">Time: 75</h5>
+            <h5 id="highscores">
+                <a href="highscores.html">High Scores</a>
+            </h5>
+        </div>
         <div id="question-area">
-            <h2>Coding Quiz</h2>
-            <h3>Do your best to answer all the questions right. Wrong answers remove time.</h3>
-            <ul id="question">
-            </ul>
-            <button id="start-btn">Start!</button>
+            <h2 class="question" id="question">Coding Quiz</h2>
+            <h3 id="remove">Do your best to answer all the questions right. Wrong answers remove time.</h3>
+            <ul id="list-area"></ul>
+            <div id="correct-incorrect"></div>
+            <button class="btn" id="start-btn">Start!</button>
         </div>
     </main>
     <script src="./assets/js/script.js"></script>

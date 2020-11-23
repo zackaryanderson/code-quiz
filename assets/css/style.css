@@ -1,0 +1,92 @@
+        * {
+            box-sizing: border-box;
+        }
+        
+        #question-area {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px;
+        }
+        .question{
+            font-weight: bold;
+            font-size: 40px;
+        }
+
+        
+        #list-area {
+            display: flex;
+            flex-direction: column;
+            padding-inline-start: 0px;
+        }
+        
+        .cleanup {
+            list-style: none;
+            color: black;
+            text-decoration: none;
+            background-color: lightpink;
+            border-radius: 25px;
+            padding: 15px;
+            font-size: 23px;
+            display: inline;
+            margin: 5px;
+            /* width: 25%; */
+            flex: 1;
+        }
+        
+        .cleanup:hover {
+            background-color: pink;
+            border: 1px black dotted;
+        }
+        
+        .top {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 20px;
+        }
+        
+        #timer {
+            justify-self: right;
+        }
+        
+        #highScores {
+            justify-self: left;
+        }
+        
+        .btn {
+            outline: none;
+            border: none;
+            display: inline-block;
+            background: lightgrey;
+            border-radius: 7px;
+            font-size: 1.25rem;
+            position: relative;
+            top: -2px;
+            box-shadow: 1px 2px pink;
+            /* margin-left: 50px; */
+        }
+        
+        .btn:hover {
+            top: -1px;
+            background: grey;
+        }
+        
+        .btn:active {
+            top: 0;
+            box-shadow: none;
+        }
+        
+        .gone {
+            color: white;
+            background: transparent;
+            box-shadow: 0px 0px 0px transparent;
+            border: 0px solid transparent;
+            text-shadow: 0px 0px 0px transparent;
+            box-shadow: none;
+        }
+        
+        .correctIncorrect {
+            color: grey;
+            border-top: 1px solid grey;
+        }
