@@ -40,8 +40,8 @@ var correctIncorrect = document.querySelector("#correct-incorrect");
 var counter = 0;
 var numCorrect = 0;
 
-countDown.addEventListener("click",function() {
-//var countDown = function(time) {
+countDown.addEventListener("click", function () {
+    //var countDown = function(time) {
     var timeInterval = setInterval(function () {
         if (time <= 0) {
             clearInterval(timeInterval);
@@ -52,7 +52,7 @@ countDown.addEventListener("click",function() {
             //console.log(timeLeft);
         }
     }, 1000);
-    questionDisplay(counter,questions);
+    questionDisplay(counter, questions);
 });
 
 var taskButtonHandler = function (event) {
@@ -69,22 +69,22 @@ var taskButtonHandler = function (event) {
     }
 }
 
-var questionDisplay = function (counter,questions) {
+var questionDisplay = function (counter, questions) {
     question.innerHTML = "";
     remove.innerHTML = "";
     listArea.innerHTML = "";
 
     //for ( var i = 0; i < questions.length; i++){
-        question.textContent = questions[counter].head;
-        answers = questions[counter].options;
+    question.textContent = questions[counter].head;
+    answers = questions[counter].options;
 
-        for ( i = 0; i < answers.length; i++){
-            var listItem = document.createElement("li");
-            listItem.textContent = answers[i];
-            listItem.className = "cleanup"
-            listArea.appendChild(listItem);
-        }
-        listArea.addEventListener("click",check);
+    for (i = 0; i < answers.length; i++) {
+        var listItem = document.createElement("li");
+        listItem.textContent = answers[i];
+        listItem.className = "cleanup"
+        listArea.appendChild(listItem);
+    }
+    listArea.addEventListener("click", check);
     //}
 }
 
@@ -93,7 +93,7 @@ var check = function (event) {
     correctIncorrect.innerHTML = "";
     //console.log(targetEl.innerText);
 
-    if (targetEl.innerText == questions[counter].answer){
+    if (targetEl.innerText == questions[counter].answer) {
         var congrats = document.createElement("div");
         congrats.textContent = "That's Correct";
         congrats.className = "correctIncorrect";
@@ -107,50 +107,53 @@ var check = function (event) {
         time = time - 10;
     }
     counter++;
-    if (counter > questions.length -1 ){
+    if (counter > questions.length - 1) {
         endGame();
     }
-    else{
-        questionDisplay(counter,questions);
+    else {
+        questionDisplay(counter, questions);
     }
 }
 
-var endGame = function(){
+var endGame = function () {
     console.log("game over");
     correctIncorrect.innerHTML = "";
     question.innerHTML = "GAME OVER";
     listArea.innerHTML = "";
     countDown.className = "btn";
+    var score = Math.max(0, time * numCorrect);
 
     var highScore = localStorage.getItem("highscore");
-    if (highScore === null){
+    if (highScore === null) {
         highScore = 0;
     }
     var name = localStorage.getItem("initials");
-    if (name === null){
+    if (name === null) {
         name = "N/A";
     }
 
-    if (score > highScore){
+    if (score > highScore) {
         var ans = window.prompt("NEW HIGH SCORE!\nPlease Enter Your Initials");
-        localStorage.setItem("highscore",score);
-        localStorage.setItem("name",ans);
+        highScore.score = score;
+        highScore.name = ans;
+        localStorage.setItem("highscore", JSON.stringify(highScore));
+        //localStorage.setItem("highname", ans);
+    }
+    else{
+        var ans = window.prompt("You did not beat the High Score.\nPlease Enter Your Initials");
+        lowScore.score = score;
+        lowScore.name = ans;
+        localStorage.setItem("lowscore", JSON.stringify(lowScore));
     }
 
     var scoreLog = document.createElement("div");
-    var score = Math.max(0, time * numCorrect);
     scoreLog.textContent = "Score: " + score;
     question.appendChild(scoreLog);
     counter = 0;
     time = 0;
     countDown.innerHTML = "Play again?"
-    
-    //end the game and display score
+
 }
 
-//add pop ups at bottom of the screen for correct/wrong answers
-
-//save highscores
-
-//event listeners
+//look for clicks on the screen
 pageContentEl.addEventListener("click", taskButtonHandler);
