@@ -29,6 +29,22 @@ var questions = [
     },
 ];
 
+var highScore = localStorage.getItem("highscore");
+// if (highScore === null) {
+//     highScore = [""];
+// }
+// console.log(highScore);
+// //highScore = JSON.parse(highScore);
+
+var lowScore = localStorage.getItem("lowscore");
+// if (lowScore === null) {
+//     lowScore = [""];
+// }
+// console.log(lowScore);
+
+
+//lowScore = JSON.parse(lowScore);
+
 //add timer *can i use js for specific placements?
 var time = 15 * questions.length - 1; //15 seconds per question
 var countDown = document.querySelector("#start-btn");
@@ -123,27 +139,17 @@ var endGame = function () {
     countDown.className = "btn";
     var score = Math.max(0, time * numCorrect);
 
-    var highScore = localStorage.getItem("highscore");
-    if (highScore === null) {
-        highScore = 0;
-    }
-    var name = localStorage.getItem("initials");
-    if (name === null) {
-        name = "N/A";
-    }
-
     if (score > highScore) {
         var ans = window.prompt("NEW HIGH SCORE!\nPlease Enter Your Initials");
-        highScore.score = score;
-        highScore.name = ans;
-        localStorage.setItem("highscore", JSON.stringify(highScore));
+        highScore = score;
+        localStorage.setItem("highscore", highScore);
+        localStorage.setItem("name",ans);
         //localStorage.setItem("highname", ans);
     }
     else{
         var ans = window.prompt("You did not beat the High Score.\nPlease Enter Your Initials");
-        lowScore.score = score;
-        lowScore.name = ans;
-        localStorage.setItem("lowscore", JSON.stringify(lowScore));
+        lowScore = score;
+        lowName = ans;
     }
 
     var scoreLog = document.createElement("div");
